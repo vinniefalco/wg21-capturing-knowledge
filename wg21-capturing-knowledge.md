@@ -477,14 +477,16 @@ Beyond proposal evaluation against captured expert knowledge, the author develop
 
 > **⚠️ Disclaimer**: The criteria in the Paper Tester are based on the author's opinion and are not evidence-based. They represent one perspective on what makes a strong proposal, derived from observations about committee discussions and historical outcomes. The framework was developed with AI assistance and should be treated as experimental—a starting point for discussion rather than authoritative guidance.
 
+**The Paper Tester is not intended to replace human judgment.** It provides a signal and a confidence score—nothing more. Humans must make the final decision. This design reflects a core insight: human judgment and human attention are the valuable, irreducible resources in any evaluation process. AI cannot substitute for expert deliberation, but it can *amplify* expert capability. When AI performs reliable pattern-matching against documented criteria, experienced practitioners achieve higher throughput without sacrificing the quality that comes from human oversight. The tool surfaces concerns; humans decide what to do about them.
+
 The Paper Tester evaluates proposals against 13 categories and includes a "gate" mechanism requiring library proposals to justify why standardization (vs. ecosystem distribution) is necessary. The framework was applied to four papers:
 
 | Paper | Result | Summary |
 |-------|--------|---------|
-| [D3952R0](https://wg21.link/D3952R0) | 🟢 PASS (21/26) | A textbook example of "make the impossible possible"—enables correct, portable pointer-in-range checking that currently requires undefined or unspecified behavior. |
-| [P0429R3](https://wg21.link/P0429R3) | 🔴 GATE | Failed because it relied on "widespread use of Boost.FlatMap" as justification, which proves ecosystem distribution works rather than demonstrating a coordination failure requiring standardization. |
-| [P0447R21](https://wg21.link/P0447R21) | 🔴 GATE | Despite exceptional documentation and 21 revisions, failed because no coordination failure was documented; plf::hive already exists as a successful third-party library. |
-| [P2075R5](https://wg21.link/P2075R5) | 🔴 GATE | Failed because it cited multiple vendor implementations (Intel MKL, cuRAND, rocRAND) as evidence *for* standardization, when this actually demonstrates the ecosystem successfully delivers the functionality without standardization. |
+| [D3952R0](https://wg21.link/D3952R0) | 🟢 PASS | A textbook example of "make the impossible possible"—enables correct, portable pointer-in-range checking that currently requires undefined or unspecified behavior. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/D3952R0-is_pointer_in_range.md)) |
+| [P0429R3](https://wg21.link/P0429R3) | 🔴 GATE | Failed because it relied on "widespread use of Boost.FlatMap" as justification, which proves ecosystem distribution works rather than demonstrating a coordination failure requiring standardization. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P0429R3-flat_map.md)) |
+| [P0447R21](https://wg21.link/P0447R21) | 🔴 GATE | Despite exceptional documentation and 21 revisions, failed because no coordination failure was documented; plf::hive already exists as a successful third-party library. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P0447R21-hive.md)) |
+| [P2075R5](https://wg21.link/P2075R5) | 🔴 GATE | Failed because it cited multiple vendor implementations (Intel MKL, cuRAND, rocRAND) as evidence *for* standardization, when this actually demonstrates the ecosystem successfully delivers the functionality without standardization. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P2075R5-philox_engine.md)) |
 
 The full evaluation outputs are available in the [outputs directory](https://github.com/cppalliance/wg21-capturing-knowledge/tree/master/outputs).
 
