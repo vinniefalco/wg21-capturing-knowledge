@@ -401,6 +401,67 @@ Howard also articulates the fundamental structural limitation of WG21: it's a vo
 
 **References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/transcripts/howard-hinnant.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/transcripts/howard-hinnant.knowledge.md)
 
+### 4.3 Application: Proposal Evaluation
+
+Beyond preserving knowledge, the captured principles can be *applied* to help evaluate proposals. We demonstrate this by analyzing [P1255R11: A view of 0 or 1 elements: views::maybe](https://wg21.link/P1255R11) against the principles extracted from our interviews.
+
+#### How It Works
+
+1. **Principle Matching**: Each proposal is evaluated against relevant principles from the knowledge base. For library proposals, this includes principles like Howard's "standardization threshold" (HH-P1: make the impossible possible, not the easy easier) and "field experience requirement" (HH-P2).
+
+2. **Red Flag Detection**: The principles include specific "red flags" that signal potential concerns. For example, HH-P1 flags proposals where "functionality is already achievable with existing standard components."
+
+3. **Checklist Generation**: Questions derived from the principles are answered systematically, producing a structured assessment.
+
+4. **Synthesis**: Results are compiled into a quick-review checklist and detailed analysis with specific recommendations.
+
+#### Important: AI Assists, Humans Decide
+
+The evaluation tool **does not make decisions**—it presents structured information to help humans decide. The output serves two purposes:
+
+- **For committee members**: A quick-review checklist highlighting which principles the proposal aligns with or potentially violates, enabling faster triage and more informed discussion
+- **For paper authors**: Synthesized feedback identifying specific concerns that could be addressed in revision, along with the reasoning behind each concern
+
+The goal is not to replace human judgment but to **scale expert judgment**—allowing the insights of experienced committee members to inform evaluation of proposals even when those experts cannot personally review every paper.
+
+#### Example: P1255R11 Assessment
+
+Evaluating P1255R11 against captured principles produced the following quick-review checklist:
+
+| Question | Assessment |
+|----------|------------|
+| Does this make the impossible possible, or the hard easy? | ⚠️ Makes the easy slightly easier |
+| Is there positive field experience from independent users? | ⚠️ Not demonstrated |
+| What specific problem does this solve? | ✅ Clearly stated |
+| How hard is the problem to solve without this proposal? | ⚠️ Not hard |
+| Is there evidence of real user demand? | ⚠️ Not demonstrated |
+| What is the implementation burden? | ✅ Low |
+
+**Key concerns identified:**
+- The core value proposition (replacing `if (opt) { use(*opt); }` with a range-based loop) represents syntactic preference rather than enabling previously impossible functionality
+- Implementation exists but independent field experience is not documented
+- The vocabulary type argument is unconvincing—`maybe_view` is a pipeline primitive, not a type likely to appear at API boundaries
+
+**Recommendations for the author:**
+- Document adoption of the reference implementation outside the author's organization
+- Provide concrete examples of bugs prevented in real codebases
+- Strengthen the motivation beyond ergonomic convenience
+
+This evaluation does not conclude the proposal should be rejected—only that these specific concerns, derived from principles articulated by experienced committee members, warrant attention.
+
+**References:** [Full evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/p1255r11_eval.md) ・ [Source paper](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/inputs/p1255r11.md)
+
+#### Experimental Status
+
+This evaluation methodology is experimental. The distilled knowledge, output formats, and evaluation process are all subject to refinement as we learn what serves the committee best. Potential improvements include:
+
+- Better categorization of principles (library-only vs. language-only)
+- Calibrated confidence levels based on accumulated evaluations
+- Automation of initial screening while preserving human review for final assessment
+- Reconciliation of potentially contradictory principles as the knowledge base grows
+
+Feedback from practitioners will shape how this methodology evolves.
+
 ---
 
 ## 5. Conclusion: The Window Is Open
