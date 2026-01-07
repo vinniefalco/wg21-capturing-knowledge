@@ -482,9 +482,9 @@ The Paper Tester evaluates proposals against 13 categories and includes a "gate"
 | Paper | Result | Summary |
 |-------|--------|---------|
 | [D3952R0](https://wg21.link/D3952R0) | 🟢 PASS (21/26) | A textbook example of "make the impossible possible"—enables correct, portable pointer-in-range checking that currently requires undefined or unspecified behavior. |
-| [P0429R3](https://wg21.link/P0429R3) | 🔴 GATE FAIL | Failed because it relied on "widespread use of Boost.FlatMap" as justification, which proves ecosystem distribution works rather than demonstrating a coordination failure requiring standardization. |
-| [P0447R21](https://wg21.link/P0447R21) | 🔴 GATE FAIL | Despite exceptional documentation and 21 revisions, failed because no coordination failure was documented; plf::hive already exists as a successful third-party library. |
-| [P2075R5](https://wg21.link/P2075R5) | 🔴 GATE FAIL | Failed because it cited multiple vendor implementations (Intel MKL, cuRAND, rocRAND) as evidence *for* standardization, when this actually demonstrates the ecosystem successfully delivers the functionality without standardization. |
+| [P0429R3](https://wg21.link/P0429R3) | 🔴 GATE | Failed because it relied on "widespread use of Boost.FlatMap" as justification, which proves ecosystem distribution works rather than demonstrating a coordination failure requiring standardization. |
+| [P0447R21](https://wg21.link/P0447R21) | 🔴 GATE | Despite exceptional documentation and 21 revisions, failed because no coordination failure was documented; plf::hive already exists as a successful third-party library. |
+| [P2075R5](https://wg21.link/P2075R5) | 🔴 GATE | Failed because it cited multiple vendor implementations (Intel MKL, cuRAND, rocRAND) as evidence *for* standardization, when this actually demonstrates the ecosystem successfully delivers the functionality without standardization. |
 
 The full evaluation outputs are available in the [outputs directory](https://github.com/cppalliance/wg21-capturing-knowledge/tree/master/outputs).
 
