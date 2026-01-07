@@ -348,7 +348,7 @@ Modern AI capabilities make this project feasible in ways that weren't possible 
 - **Structured extraction**: Converting narrative knowledge into organized frameworks
 - **Accessibility**: Making captured knowledge searchable and navigable
 
-We have developed an agentic knowledge extraction framework ([WG21_CAPTURE_RULE.md](https://github.com/cppalliance/wg21-capturing-knowledge/WG21_CAPTURE_RULE.md)) that processes interview transcripts and produces structured output distinguishing:
+We have developed an agentic knowledge extraction framework ([WG21_CAPTURE_RULE.md](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/WG21_CAPTURE_RULE.md)) that processes interview transcripts and produces structured output distinguishing:
 
 - **Principles**: Distilled, actionable rules that can be applied to evaluate new proposals
 - **Experiences**: Supporting stories that illustrate and validate the principles
@@ -361,9 +361,45 @@ The technology to preserve WG21's institutional wisdom exists today.
 
 ## 4. Experimental Evidence
 
-To demonstrate what captured knowledge looks like, we interviewed several prominent members of the standardization committee, who possess deep knowledge of the language and extensive experience. Our methodology consisted of audio-only interviews with AI-assisted captured transcriptions. These transcriptions were processed using an agentic workflow to create a synthesis of distilled knowledge. We present the distilled knowledge below, and links to the original transcripts and the agentic workflow.
+To demonstrate what captured knowledge looks like, we interviewed several prominent members of the standardization committee, who possess deep knowledge of the language and extensive experience. Our methodology consisted of audio-only interviews with AI-assisted captured transcriptions. These transcriptions were processed using an agentic workflow to create a synthesis of distilled knowledge. We present the distilled knowledge below.
+
+> **Note**: The full transcripts, synthesized knowledge files, and the agentic extraction rule are available in the [GitHub repository](https://github.com/cppalliance/wg21-capturing-knowledge).
 
 ### 4.1 Matheus Izvekov
+
+Matheus Izvekov brings a rare perspective to WG21: deep compiler implementation expertise in templates, overload resolution, and partial ordering—areas where most original experts have retired or become inactive. His experience reveals a critical gap between how papers pass through EWG (often without deep technical understanding from voters) and the hard realities discovered later in CWG or during implementation.
+
+His central insight is that **high vote counts in EWG do not indicate understanding**. His first paper achieved near-consensus, yet later revealed that voters hadn't truly grasped the implications—a pattern he believes is systemic. This disconnect stems from the separation of experts (concentrated in CWG) from the design phase (EWG), compounded by simultaneous scheduling that prevents cross-pollination.
+
+Matheus also articulates a tension between library and language features: foundational operations like `std::move` pay unnecessary compile-time costs as templates when they could be cheaper and better-diagnosed as language primitives. He warns that the committee's preference for library solutions may be counterproductive when language features would provide a more polished user experience.
+
+**Key Insights:**
+
+- Near-unanimous EWG votes can mask widespread misunderstanding of a paper's implications; consensus indicates political alignment, not technical comprehension
+- Features that bypass EWG review risk incomplete specifications that only surface during implementation—potentially years later
+- The simultaneous scheduling of CWG and EWG prevents experts from contributing to evolution discussions, causing papers to arrive at CWG in suboptimal shape
+- The committee should throttle feature adoption based on available implementation capacity; approving features faster than they can be implemented wastes resources
+- Rationale and evidence discussed orally in study groups is systematically lost because it's not recorded in papers, making retrospective analysis nearly impossible
+
+**References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/transcripts/matheus-izvekov.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/transcripts/matheus-izvekov.knowledge.md)
+
+### 4.2 Howard Hinnant
+
+Howard Hinnant brings nearly three decades of WG21 experience, beginning as MetroWorks' sole standard library implementer in 1998 and later serving as LWG chair starting in 2005. His perspective is grounded in implementation reality: he has personally shipped standard library code and experienced the consequences of committee decisions at the vendor level.
+
+His most powerful insight is the **standardization threshold principle**: the standard should make the impossible possible or the hard easy, but not the easy easier. This filters out "convenience" proposals that add maintenance burden without solving real problems. He couples this with an unwavering requirement for **positive field experience**—proposals without real-world validation are gambling with the standard's long-term quality.
+
+Howard also articulates the fundamental structural limitation of WG21: it's a volunteer organization lacking executive power. No one can compel work to be done, which means important but contentious proposals (like his hash improvements) can simply be abandoned when participants tire of arguing. This explains why obvious needs sometimes go unaddressed for years.
+
+**Key Insights:**
+
+- Only standardize features that enable what was previously impossible/impractical, or that significantly reduce difficulty of hard tasks; reject proposals that merely add convenience
+- Proposals must demonstrate successful real-world usage with positive feedback from independent users before standardization; implementation alone is insufficient
+- WG21 is a volunteer organization without executive authority; no one can compel work to be done, so important proposals may be abandoned when champions lose interest
+- Every proposal must clearly answer: what specific problem does this solve, and without this proposal, how hard is the problem to solve?
+- ABI stability concerns should trigger cost/benefit analysis, not automatic rejection; some ABI breaks are worth the transition cost
+
+**References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/transcripts/howard-hinnant.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/transcripts/howard-hinnant.knowledge.md)
 
 ---
 
