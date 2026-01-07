@@ -31,18 +31,83 @@ The ecosystem (Boost, vcpkg, conan, header-only libraries) can iterate, deprecat
 
 **The burden of proof is on the proposal to demonstrate that standardization is necessary, not merely convenient.**
 
+### The Multiple Implementations Paradox
+
+A common but flawed argument: "Multiple implementations exist (Boost.Foo, FooLib, AnotherFoo), therefore we need a standard version to reduce fragmentation."
+
+This reasoning is backwards. Multiple implementations existing is *prima facie* evidence that:
+
+- The problem is solvable without standardization
+- The ecosystem can distribute solutions effectively
+- There is no blocking coordination failure
+
+**"Multiple implementations exist" is evidence AGAINST standardization, not for it.**
+
+The existence of ecosystem solutions shifts the burden to extraordinary evidence of actual harm:
+
+- If projects use different implementations internally without cross-library exchange, there is no coordination failure
+- If libraries can depend on one ecosystem implementation (via vcpkg, conan, or vendoring), there is no coordination failure
+- If "fragmentation" means "users have choices," that is ecosystem success, not failure
+
+Standardization is justified only when:
+
+1. Libraries must exchange this type at API boundaries (vocabulary necessity), AND
+2. The ecosystem has demonstrably failed to converge on a compatible interface, AND
+3. This failure causes documented, quantified harm (bug reports, integration failures, wasted engineering)
+
+**"Would be nice to consolidate" is not a coordination failure. "Users have to choose a dependency" is not a coordination failure. Only documented interoperability harm justifies the perpetual costs of standardization.**
+
+### The Standardization Threshold
+
+Beyond coordination failures, proposals must clear a value threshold. As Howard Hinnant articulates:
+
+> "I prefer to make what was previously impossible or impractical, possible. Or if not that, to make something that is very difficult, to make it easy. But making the easy easier, I find very uninteresting and not worthwhile to standardize."
+
+This principle provides a powerful filter:
+
+- **Make the impossible possible**: Enable capabilities that cannot be achieved without standardization (e.g., language integration, cross-platform guarantees)
+- **Make the hard easy**: Significantly reduce difficulty of genuinely hard tasks (e.g., exception-safe resource management before RAII)
+- **NOT: Make the easy easier**: Reject proposals whose primary value is convenience for already-solvable problems
+
+If a user can solve the problem in 5-10 lines of straightforward code, standardization adds perpetual costs without proportionate value. The standard library is not a collection of conveniences—it is infrastructure that enables what would otherwise be impossible or impractical.
+
+**Questions every proposal must answer:**
+
+1. What problem am I solving?
+2. Without this proposal, how does the programmer solve this problem?
+
+If the answer to (2) is "write a few lines of simple code," the proposal fails the threshold regardless of how clean its API is.
+
 ### Gate Questions
+
+#### G0. What specific coordination failure does this solve?
+
+This is the foundational question. If the answer is unclear, the proposal fails regardless of other merits.
+
+| Pass | Fail |
+|------|------|
+| Documented incidents where incompatible types caused bugs, build failures, or wasted engineering work | "Multiple implementations exist" (this proves ecosystem works) |
+| Cross-library API boundaries require type agreement, with specific examples of failed interop | "Consolidation would reduce confusion" |
+| Ecosystem survey showing actual integration pain with quantified costs | "It would be nice to have one standard version" |
+| Named projects that attempted to interoperate and failed, with issue links | Theoretical claim that coordination would be helpful |
+| Without standardization, the problem is impossible or genuinely hard to solve | Without standardization, the problem is solvable in 5-10 lines of user code |
+
+**Automatic FAIL if:** The proposal cannot identify a specific, documented coordination failure that standardization would resolve. "Multiple implementations exist" without evidence of interoperability harm is a FAIL, not a PASS.
+
+**Also FAIL if:** The alternative (without this proposal) is straightforward user code. Ask: "How does a programmer solve this today?" If the answer is "write a few lines of simple code," the proposal fails the standardization threshold.
 
 #### G1. Why can't this be a third-party library?
 
 | Pass | Fail |
 |------|------|
-| Specific coordination failure documented (libraries X and Y have incompatible versions) | "It would be convenient to have in the standard" |
+| Specific coordination failure documented with evidence (issue links, bug reports) | "It would be convenient to have in the standard" |
 | Requires compiler/language integration unavailable to third parties | Works fine as header-only library |
 | Must be vocabulary type for cross-library APIs (like `std::optional`, `std::string_view`) | "Users shouldn't have to find dependencies" |
-| Quantified ecosystem fragmentation (N competing implementations causing M integration failures) | Assertion that standardization is "better" |
+| Ecosystem fragmentation causing documented harm (N integration failures, M hours wasted) | "Multiple implementations exist" without documented harm |
+| Ecosystem has tried and failed to converge (documented failed standardization attempts) | Assertion that standardization is "better" |
+| Cross-platform availability genuinely blocked—not merely inconvenient via package managers | "Dependencies are painful" (this is a tooling problem, not a standardization need) |
 
-**Automatic FAIL if:** No specific, documented reason why third-party distribution is insufficient.
+**Automatic FAIL if:** No specific, documented reason why third-party distribution is insufficient. "Ecosystem fragmentation" without quantified harm is insufficient.
 
 #### G2. What are the perpetual costs, and who bears them?
 
@@ -85,6 +150,9 @@ Immediately after the header, evaluate the gate questions:
 ```markdown
 ## Gate: Standardization Justification
 
+**G0. What coordination failure does this solve?** ✅ PASS / ❌ FAIL  
+[One sentence identifying the specific coordination failure with evidence from paper]
+
 **G1. Why not third-party?** ✅ PASS / ❌ FAIL  
 [One sentence explanation with evidence from paper]
 
@@ -96,7 +164,7 @@ Immediately after the header, evaluate the gate questions:
 ---
 ```
 
-If **either gate question fails**, the proposal receives an automatic FAIL verdict regardless of other scores.
+If **any gate question fails**, the proposal receives an automatic FAIL verdict regardless of other scores.
 
 ### 2. Guidance for Authors (Required for Gate Failures)
 
@@ -189,10 +257,18 @@ This evaluation is not a judgment on whether your library is useful or well-desi
 
 ### How to Strengthen a Revision
 
+To pass G0 (What coordination failure does this solve?), consider adding:
+- **Documented harm**: Cite specific bug reports, GitHub issues, or incident reports where type incompatibility caused real problems
+- **Named victims**: Identify specific projects that attempted interoperability and failed
+- **Quantified costs**: Estimate hours wasted, bugs shipped, or projects abandoned due to fragmentation
+- **Why ecosystem failed**: Explain why Boost, vcpkg, or other ecosystem solutions could not resolve this
+
+**Important**: "Multiple implementations exist" is evidence AGAINST standardization. It proves the ecosystem works. You must demonstrate that this success creates coordination problems that only standardization can solve.
+
 To pass G1 (Why not third-party?), consider adding:
-- **Documented coordination failures**: Cite specific projects, issues, or bug reports where incompatible implementations caused real problems
+- **Documented coordination failures**: Cite specific projects, issues, or bug reports where incompatible implementations caused real problems—not just that alternatives exist
 - **Vocabulary type argument**: Explain why libraries need to exchange this type at API boundaries (not just use it internally)
-- **Ecosystem survey**: Show that multiple incompatible implementations exist and quantify the fragmentation
+- **Failed ecosystem convergence**: Document attempts by the ecosystem to standardize that failed (e.g., Boost proposal rejected, competing de facto standards)
 - **Language integration needs**: If this requires compiler support unavailable to third parties, explain why
 
 To pass G2 (Perpetual costs), consider adding:
@@ -267,12 +343,13 @@ Is this genuinely a vocabulary type requiring standardization?
 
 | Pass | Fail |
 |------|------|
-| Multiple libraries currently suffer from type incompatibility | Theoretical claim that coordination would be nice |
+| Documented bug reports or issues where type incompatibility caused real problems | "Multiple implementations exist" (proves ecosystem works) |
+| Named libraries that attempted interop and failed, with evidence | Theoretical claim that coordination would be nice |
 | Libraries need to agree on this type at boundaries (like `std::optional`, `std::chrono`) | Type is inherently local (works in isolation) |
-| Specific examples of failed interoperability documented | "Vocabulary type" asserted without evidence |
-| Clear inter-library communication requirement | Could be a header-only library without coordination |
+| Quantified harm from current fragmentation (hours wasted, bugs shipped, projects abandoned) | "Vocabulary type" asserted without evidence |
+| Evidence that internal-only use is insufficient for the target use cases | Could be a header-only library without coordination |
 
-**Key Question:** Is there documented evidence of coordination failures this type would solve?
+**Key Question:** Is there documented evidence of coordination failures this type would solve? "Multiple implementations exist" is evidence the ecosystem works—what specific harm has this caused?
 
 ---
 
@@ -292,19 +369,23 @@ Is there evidence of real-world demand from named users?
 
 ---
 
-### Category 5: Implementation
+### Category 5: Implementation & Field Experience
 
-Does working, validated implementation exist?
+Does working, validated implementation exist with positive field experience?
+
+As Howard Hinnant states: "Nothing should be standardized unless it has some positive field experience under its belt... field experience will bang out use cases."
 
 | Pass | Fail |
 |------|------|
 | Implementation publicly available for experimentation | Paper only; no running code |
+| **Positive feedback from independent users** (not just the proposer's team) | "Field experience" limited to proposer's organization |
 | At least one release cycle of user feedback gathered | Speculative design without validation |
 | 2+ implementations proving design consistency | Single proof-of-concept only |
 | Years of production use documented | "Users will validate post-standardization" |
 | Implementation differences have revealed design ambiguities | Untested specification |
+| Field experience has refined the API based on real problems encountered | Theoretical benefits without demonstrated practical value |
 
-**Key Question:** Has this been implemented, deployed, and refined based on real usage?
+**Key Question:** Has this been implemented, deployed, and refined based on real usage? Implementation alone is insufficient—there must be positive feedback from users independent of the proposal authors.
 
 ---
 
@@ -482,6 +563,28 @@ Flag these if present (use 🚩 prefix in output):
 13. **No standardization justification** — Treats "useful" as sufficient; no cost analysis (GATE FAIL)
 14. **Vocabulary assertion without evidence** — "Should be vocabulary type" without documented coordination failures (GATE FAIL)
 15. **Cost blindness** — No acknowledgment of perpetual implementation/maintenance burden (GATE FAIL)
+16. **Multiple implementations as justification** — "Several implementations exist" treated as evidence FOR standardization without documented interoperability harm (GATE FAIL)
+17. **Convenience without threshold** — Primary value is "slightly nicer syntax" or "saves a few keystrokes" for an already-solvable problem; fails the "make impossible possible, not easy easier" test
+
+---
+
+## Principles Sources
+
+This evaluation framework incorporates principles from experienced WG21 practitioners. Key sources:
+
+### Howard Hinnant
+
+Howard Hinnant served as LWG chair starting in 2005, was the sole standard library implementer at MetroWorks (1998), and later led libc++ development at Apple. His nearly three decades of WG21 experience inform several core criteria:
+
+- **The Standardization Threshold** (P1): "I prefer to make what was previously impossible or impractical, possible. Or if not that, to make something that is very difficult, to make it easy. But making the easy easier, I find very uninteresting and not worthwhile to standardize."
+
+- **Field Experience Requirement** (P2): "Nothing should be standardized unless it has some positive field experience under its belt... field experience will bang out use cases."
+
+- **The Two Questions** (P8): "What problem am I solving and if this paper's not accepted, how does the programmer solve this problem without this solution."
+
+- **Cross-Platform Availability** (P10): "It makes it easier to port from platform to platform. If you can grab it from the library, that means you don't have to install a third party library, which is naturally going to be probably a non-portable process."
+
+**Source**: [Howard Hinnant Knowledge Document](transcripts/howard-hinnant.knowledge.md) — Interview conducted January 7, 2026.
 
 ---
 
@@ -522,6 +625,9 @@ A low score does not mean a proposal is bad—it means specific concerns should 
 
 ## Gate: Standardization Justification
 
+**G0. What coordination failure does this solve?** ❌ FAIL  
+Paper cites "multiple implementations exist" as justification, which is evidence the ecosystem works, not evidence of coordination failure.
+
 **G1. Why not third-party?** ❌ FAIL  
 Paper states feature "would be convenient" but does not document why ecosystem distribution is insufficient. Similar functionality exists in Boost.Widget.
 
@@ -538,16 +644,23 @@ This evaluation is not a judgment on whether your library is useful or well-desi
 
 ### What Was Missing
 
+**G0 failed** because the paper cites "multiple implementations exist" as evidence for standardization. This actually proves the ecosystem works. No specific coordination failures (bug reports, integration issues, wasted engineering) were documented.
+
 **G1 failed** because the paper's motivation section focuses on the library's features and convenience rather than documenting why third-party distribution is insufficient. The existence of Boost.Widget demonstrates this functionality can be distributed through the ecosystem.
 
 **G2 failed** because the paper does not discuss implementation costs, interaction with existing standard library components, or who would maintain the feature post-standardization.
 
 ### How to Strengthen a Revision
 
+To pass G0, consider:
+- Documenting specific bug reports or GitHub issues where incompatible Widget types caused problems
+- Quantifying engineering hours wasted due to fragmentation
+- Explaining what specific harm the ecosystem fragmentation causes (not just that it exists)
+
 To pass G1, consider:
 - Documenting specific interoperability failures between Boost.Widget and other implementations
 - Showing that libraries need to exchange Widget objects at API boundaries
-- Explaining why Boost.Widget's approach is insufficient for cross-library coordination
+- Explaining why ecosystem convergence has failed despite attempts
 
 To pass G2, consider:
 - Adding a section analyzing implementation complexity for major vendors
@@ -615,8 +728,11 @@ If coordination failures are difficult to document, consider:
 
 ## Gate: Standardization Justification
 
+**G0. What coordination failure does this solve?** ✅ PASS  
+Section 3 documents 47 GitHub issues where projects failed to interoperate due to incompatible implementations of this type.
+
 **G1. Why not third-party?** ✅ PASS  
-Section 3 documents coordination failure: three major libraries (Foo, Bar, Baz) have incompatible implementations causing integration failures. Cites 47 GitHub issues across projects.
+Three major libraries (Foo, Bar, Baz) attempted ecosystem convergence but failed; Section 4 documents why Boost submission was insufficient.
 
 **G2. Perpetual costs acknowledged?** ✅ PASS  
 Section 7 analyzes implementation burden across vendors; authors from two implementers commit to long-term maintenance.
