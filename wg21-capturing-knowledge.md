@@ -365,6 +365,15 @@ To demonstrate what captured knowledge looks like, we interviewed several promin
 
 > **Note**: The full transcripts, synthesized knowledge files, and the agentic extraction rule are available in the [GitHub repository](https://github.com/cppalliance/wg21-capturing-knowledge).
 
+> **⚠️ Important Disclaimer**: The summaries and extracted principles presented below are **AI-generated syntheses** and should not be taken as absolute reflections of the interviewees' views. AI transcription can introduce errors, and AI synthesis can misinterpret meaning, lose nuance, or emphasize points differently than the speaker intended.
+>
+> **A production-ready process must include human review at each stage:**
+> 1. **Transcript review**: Interviewees should review transcripts to correct transcription errors and clarify ambiguous passages
+> 2. **Knowledge review**: Interviewees should review the synthesized principles and experiences to verify they accurately represent their views and intended meaning
+> 3. **Evaluation review**: Any proposal evaluations generated from the knowledge base should be reviewed by humans before being acted upon
+>
+> The outputs presented here are **preliminary demonstrations** of what the workflow can produce. They have not yet undergone the full interviewee review process that a mature methodology would require. We present them to illustrate the potential of the approach, with the understanding that AI-assisted synthesis requires human verification to ensure fidelity to the source.
+
 ### 4.1 Matheus Izvekov
 
 Matheus Izvekov brings a rare perspective to WG21: deep compiler implementation expertise in templates, overload resolution, and partial ordering—areas where most original experts have retired or become inactive. His experience reveals a critical gap between how papers pass through EWG (often without deep technical understanding from voters) and the hard realities discovered later in CWG or during implementation.
@@ -449,7 +458,7 @@ Evaluating P1255R11 against captured principles produced the following quick-rev
 
 This evaluation does not conclude the proposal should be rejected—only that these specific concerns, derived from principles articulated by experienced committee members, warrant attention.
 
-**References:** [Full evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/p1255r11_eval.md) ・ [Source paper](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/inputs/p1255r11.md)
+**References:** [Full evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/p1255r11_eval.md) ・ [P1255R11 (wg21.link)](https://wg21.link/P1255R11)
 
 #### Experimental Status
 
