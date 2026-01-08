@@ -433,6 +433,32 @@ The framework was applied to ten papers:
 | [P1255R11](https://wg21.link/P1255R11) | — | 🔴 GATE | Failed because the "before" code works today—`views::maybe` makes code more elegant but doesn't enable anything previously impossible. "Making the easy easier" fails the standardization threshold. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P1255R11-views_maybe.md)) |
 | [P2075R5](https://wg21.link/P2075R5) | — | 🔴 GATE | Failed because it cited multiple vendor implementations (Intel MKL, cuRAND, rocRAND) as evidence *for* standardization, when this demonstrates the ecosystem already delivers the functionality. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P2075R5-philox_engine.md)) |
 
+### 4.4 Reproducibility and Iteration
+
+While the capture rule and paper tester reflect subjective judgments that have not passed through rigorous human review, the outputs they produce are reproducible. Anyone can re-prompt the capture rule on the provided transcripts or re-prompt the paper tester on the original papers and obtain similar results.
+
+The repository preserves the complete processing chain:
+
+| Stage | Location | Description |
+|-------|----------|-------------|
+| Source data | `inputs/` | Original interview transcripts |
+| Extraction rules | `rules/WG21_CAPTURE_RULE.md` | Prompts for knowledge synthesis |
+| Synthesized knowledge | `knowledge/` | Distilled principles and experiences |
+| Evaluation rules | `rules/WG21_PAPER_TESTER.md` | Prompts for paper evaluation |
+| Generated evaluations | `outputs/` | Paper assessments |
+
+This architecture enables iterative refinement:
+
+```
+Transcripts ──→ Capture Rule ──→ Knowledge ──→ Paper Tester ──→ Evaluations
+     ↑              ↑               ↑               ↑
+     │          (adjustable)     (grows)       (adjustable)
+     └──────────────┴───────────────┴───────────────┘
+                      Feedback Loop
+```
+
+As the captured knowledge base grows through additional expert interviews, the system can be refined to produce better outputs. Adjustments to the capture rules regenerate synthesized knowledge with new assumptions; adjustments to the paper tester regenerate evaluations with updated criteria. The source data remains stable while the processing rules evolve.
+
 #### Experimental Status
 
 This methodology is experimental. The distilled knowledge, output formats, and evaluation process are all subject to refinement. Potential improvements include:
