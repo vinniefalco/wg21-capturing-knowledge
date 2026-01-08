@@ -510,11 +510,14 @@ Decay is not inevitable if we act. WG21 can choose to be proactive—to capture 
 
 **What you can do:**
 
-If you are an experienced WG21 participant willing to share your knowledge through an interview, please contact the paper authors. Your insights—about design principles, historical decisions, evaluation frameworks, failure cases—are exactly what we need to capture.
+If you are:
 
-If you are a newer participant who would benefit from access to captured knowledge, your interest demonstrates the demand for this project.
+- An experienced WG21 participant willing to share your knowledge through an interview: please contact the paper authors. Your insights—about design principles, historical decisions, evaluation frameworks, failure cases—are exactly what we need to capture.
 
-If you are interested in conducting similar interviews within your organization or among other WG21 members, the authors would be happy to share the methodology and materials. The more institutions that capture their living knowledge, the better.
+- Interested in conducting similar interviews within your organization or among other WG21 members: the authors would be happy to share the methodology and materials. The more institutions that capture their living knowledge, the better.
+
+- A newer participant who would benefit from access to captured knowledge, your interest demonstrates the demand for this project.
+
 
 The knowledge exists. The technology exists. The will exists. Let's capture living knowledge while we still can.
 
