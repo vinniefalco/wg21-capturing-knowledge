@@ -373,7 +373,7 @@ If AI can help capture and synthesize knowledge, does expertise become less valu
 
 The economics of generative AI fundamentally invert traditional cost functions. Before LLMs, production was expensive—transcribing interviews, synthesizing themes, drafting documents required skilled human time. Judgment was comparatively cheap—a quick review, an approval, a correction. After generative AI, this inverts: production becomes nearly free (AI transcribes, synthesizes, and drafts at marginal cost), while judgment becomes the scarce resource (requiring irreducible human attention).
 
-Generative AI doesn't devalue expertise—it *reveals* that judgment was always the valuable part. Production was just the tax experts paid to exercise judgment.
+Generative AI doesn't devalue expertise—it *reveals* that judgment was always the valuable part, while production was just the tax experts paid.
 
 In the generative AI economy, **human attention becomes the scarcest and most valuable resource**. Everything else scales; attention doesn't. The institution that captures and allocates expert attention most efficiently wins. Agentic knowledge capture is, fundamentally, an *attention allocation system*—routing the right questions to the right experts, filtering noise from signal, and ensuring that when a human reviews synthesized output, it matters.
 
@@ -382,13 +382,13 @@ This reframes any concern about displacement:
 - **Comparative advantage shifts**: Experts focus on judgment rather than production. Howard Hinnant's value lies in knowing which library proposals lack sufficient field experience, not in typing out his reasoning. The AI handles transcription and synthesis; the expert provides the irreplaceable judgment.
 - **Capability expansion**: More people can contribute meaningfully. An expert who might never write a paper can share insights through a one-hour interview. The total knowledge captured increases even as individual time requirements decrease.
 
-The economics are clear: judgment is now the bottleneck, and experts own the bottleneck. This project doesn't diminish their role—it amplifies it.
+The economics are clear: judgment is now the bottleneck owned by experts. This project doesn't diminish their role—it amplifies it.
 
 ---
 
 ## 4. Experimental Evidence
 
-To demonstrate what captured knowledge looks like, we interviewed several prominent members of the standardization committee, who possess deep knowledge of the language and extensive experience. Our methodology consisted of audio-only interviews with AI-assisted captured transcriptions. These transcriptions were processed using an agentic workflow to create a synthesis of distilled knowledge. We present the distilled knowledge below. The full transcripts, synthesized knowledge files, and the agentic extraction rule are available in the [GitHub repository](https://github.com/cppalliance/wg21-capturing-knowledge).
+To demonstrate what captured knowledge looks like, we interviewed a few prominent members of the standardization committee, who possess deep knowledge of the language and extensive experience. Our methodology consisted of audio-only interviews with AI-assisted captured transcriptions. These transcriptions were processed using an agentic workflow to create a synthesis of distilled knowledge. We present the distilled knowledge below. The full transcripts, synthesized knowledge files, and the agentic extraction rule are available in the [GitHub repository](https://github.com/cppalliance/wg21-capturing-knowledge).
 
 > **⚠️ Important Disclaimer**: The summaries and extracted principles presented below are **AI-generated syntheses** and should not be taken as absolute reflections of the interviewees' views. AI transcription can introduce errors, and AI synthesis can misinterpret meaning, lose nuance, or emphasize points differently than the speaker intended.
 >
@@ -469,6 +469,8 @@ The framework was applied to ten papers:
 | [P0447R21](https://wg21.link/P0447R21) | — | 🔴 GATE | Despite exceptional documentation and 21 revisions, failed because no coordination failure was documented; plf::hive already exists as a successful third-party library. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P0447R21-hive.md)) |
 | [P1255R11](https://wg21.link/P1255R11) | — | 🔴 GATE | Failed because the "before" code works today—`views::maybe` makes code more elegant but doesn't enable anything previously impossible. "Making the easy easier" fails the standardization threshold. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P1255R11-views_maybe.md)) |
 | [P2075R5](https://wg21.link/P2075R5) | — | 🔴 GATE | Failed because it cited multiple vendor implementations (Intel MKL, cuRAND, rocRAND) as evidence *for* standardization, when this demonstrates the ecosystem already delivers the functionality. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P2075R5-philox_engine.md)) |
+
+> **⚠️ Not Automatic Acceptance**: We are not arguing that papers passing automated evaluation should be automatically accepted. The paper tester is a possible *first step* in a paper's journey—a way to surface signals that humans must then review and judge. The value is efficiency: incoming papers must be read, and for best results, read by experts whose attention is scarce. Automated application of distilled knowledge synthesizes useful signals at low cost, freeing expert attention for cases that genuinely require it. The tool augments human judgment; it does not replace it.
 
 ### 4.4 Reproducibility and Iteration
 
