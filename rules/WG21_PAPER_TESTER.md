@@ -584,7 +584,7 @@ Howard Hinnant served as LWG chair starting in 2005, was the sole standard libra
 
 - **Cross-Platform Availability** (P10): "It makes it easier to port from platform to platform. If you can grab it from the library, that means you don't have to install a third party library, which is naturally going to be probably a non-portable process."
 
-**Source**: [Howard Hinnant Knowledge Document](transcripts/howard-hinnant.knowledge.md) — Interview conducted January 7, 2026.
+**Source**: [Howard Hinnant Knowledge Document](../knowledge/howard-hinnant.know.md) — Interview conducted January 7, 2026.
 
 ---
 

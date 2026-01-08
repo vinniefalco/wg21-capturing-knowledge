@@ -348,7 +348,7 @@ Modern AI capabilities make this project feasible in ways that weren't possible 
 - **Structured extraction**: Converting narrative knowledge into organized frameworks
 - **Accessibility**: Making captured knowledge searchable and navigable
 
-We have developed an agentic knowledge extraction framework ([WG21_CAPTURE_RULE.md](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/WG21_CAPTURE_RULE.md)) that processes interview transcripts and produces structured output distinguishing:
+We have developed an agentic knowledge extraction framework ([WG21_CAPTURE_RULE.md](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/rules/WG21_CAPTURE_RULE.md)) that processes interview transcripts and produces structured output distinguishing:
 
 - **Principles**: Distilled, actionable rules that can be applied to evaluate new proposals
 - **Experiences**: Supporting stories that illustrate and validate the principles
@@ -361,9 +361,7 @@ The technology to preserve WG21's institutional wisdom exists today.
 
 ## 4. Experimental Evidence
 
-To demonstrate what captured knowledge looks like, we interviewed several prominent members of the standardization committee, who possess deep knowledge of the language and extensive experience. Our methodology consisted of audio-only interviews with AI-assisted captured transcriptions. These transcriptions were processed using an agentic workflow to create a synthesis of distilled knowledge. We present the distilled knowledge below.
-
-> **Note**: The full transcripts, synthesized knowledge files, and the agentic extraction rule are available in the [GitHub repository](https://github.com/cppalliance/wg21-capturing-knowledge).
+To demonstrate what captured knowledge looks like, we interviewed several prominent members of the standardization committee, who possess deep knowledge of the language and extensive experience. Our methodology consisted of audio-only interviews with AI-assisted captured transcriptions. These transcriptions were processed using an agentic workflow to create a synthesis of distilled knowledge. We present the distilled knowledge below. The full transcripts, synthesized knowledge files, and the agentic extraction rule are available in the [GitHub repository](https://github.com/cppalliance/wg21-capturing-knowledge).
 
 > **⚠️ Important Disclaimer**: The summaries and extracted principles presented below are **AI-generated syntheses** and should not be taken as absolute reflections of the interviewees' views. AI transcription can introduce errors, and AI synthesis can misinterpret meaning, lose nuance, or emphasize points differently than the speaker intended.
 >
@@ -390,7 +388,7 @@ Matheus also articulates a tension between library and language features: founda
 - The committee should throttle feature adoption based on available implementation capacity; approving features faster than they can be implemented wastes resources
 - Rationale and evidence discussed orally in study groups is systematically lost because it's not recorded in papers, making retrospective analysis nearly impossible
 
-**References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/transcripts/matheus-izvekov.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/transcripts/matheus-izvekov.knowledge.md)
+**References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/inputs/matheus-izvekov.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/knowledge/matheus-izvekov.know.md)
 
 ### 4.2 Howard Hinnant
 
@@ -408,78 +406,19 @@ Howard also articulates the fundamental structural limitation of WG21: it's a vo
 - Every proposal must clearly answer: what specific problem does this solve, and without this proposal, how hard is the problem to solve?
 - ABI stability concerns should trigger cost/benefit analysis, not automatic rejection; some ABI breaks are worth the transition cost
 
-**References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/transcripts/howard-hinnant.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/transcripts/howard-hinnant.knowledge.md)
+**References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/inputs/howard-hinnant.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/knowledge/howard-hinnant.know.md)
 
-### 4.3 Application: Proposal Evaluation
+### 4.3 Application: Paper Preflight
 
-Beyond preserving knowledge, the captured principles can be *applied* to help evaluate proposals. We demonstrate this by analyzing [P1255R11: A view of 0 or 1 elements: views::maybe](https://wg21.link/P1255R11) against the principles extracted from our interviews.
+What do we do with this distilled knowledge?
 
-#### How It Works
+The answer is **human-agentic synthesis**: distilled knowledge from expert interviews combines with WG21 leadership guidance and stakeholder input, synthesized through an agentic process into tools that augment proposals with supplementary information and confidence signals. For example, committee leadership could work with captured knowledge to produce a paper testing framework—a "preflight check" that surfaces potential concerns before proposals consume committee time. Humans provide direction and make final decisions; AI performs synthesis and pattern-matching at scale.
 
-1. **Principle Matching**: Each proposal is evaluated against relevant principles from the knowledge base. For library proposals, this includes principles like Howard's "standardization threshold" (HH-P1: make the impossible possible, not the easy easier) and "field experience requirement" (HH-P2).
+To demonstrate what such a tool might look like, we developed a **Paper Tester** ([WG21_PAPER_TESTER.md](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/rules/WG21_PAPER_TESTER.md)) that evaluates proposals against 13 categories and includes a "gate" mechanism requiring library proposals to justify why standardization is necessary.
 
-2. **Red Flag Detection**: The principles include specific "red flags" that signal potential concerns. For example, HH-P1 flags proposals where "functionality is already achievable with existing standard components."
+> **⚠️ Important**: The Paper Tester presented here was generated from the **author's opinions**, not from captured expert knowledge. It represents one perspective on what makes a strong proposal, derived from observations about committee discussions. A legitimate, authoritative paper testing framework can only be produced once sufficient knowledge capture is achieved—far more interviews than the few conducted for this paper—combined with input from WG21 leadership and stakeholders. This example demonstrates the *form* such a tool could take, not its *content*.
 
-3. **Checklist Generation**: Questions derived from the principles are answered systematically, producing a structured assessment.
-
-4. **Synthesis**: Results are compiled into a quick-review checklist and detailed analysis with specific recommendations.
-
-#### Important: AI Assists, Humans Decide
-
-The evaluation tool **does not make decisions**—it presents structured information to help humans decide. The output serves two purposes:
-
-- **For committee members**: A quick-review checklist highlighting which principles the proposal aligns with or potentially violates, enabling faster triage and more informed discussion
-- **For paper authors**: Synthesized feedback identifying specific concerns that could be addressed in revision, along with the reasoning behind each concern
-
-The goal is not to replace human judgment but to **scale expert judgment**—allowing the insights of experienced committee members to inform evaluation of proposals even when those experts cannot personally review every paper.
-
-#### Example: P1255R11 Assessment
-
-Evaluating P1255R11 against captured principles produced the following quick-review checklist:
-
-| Question | Assessment |
-|----------|------------|
-| Does this make the impossible possible, or the hard easy? | ⚠️ Makes the easy slightly easier |
-| Is there positive field experience from independent users? | ⚠️ Not demonstrated |
-| What specific problem does this solve? | ✅ Clearly stated |
-| How hard is the problem to solve without this proposal? | ⚠️ Not hard |
-| Is there evidence of real user demand? | ⚠️ Not demonstrated |
-| What is the implementation burden? | ✅ Low |
-
-**Key concerns identified:**
-- The core value proposition (replacing `if (opt) { use(*opt); }` with a range-based loop) represents syntactic preference rather than enabling previously impossible functionality
-- Implementation exists but independent field experience is not documented
-- The vocabulary type argument is unconvincing—`maybe_view` is a pipeline primitive, not a type likely to appear at API boundaries
-
-**Recommendations for the author:**
-- Document adoption of the reference implementation outside the author's organization
-- Provide concrete examples of bugs prevented in real codebases
-- Strengthen the motivation beyond ergonomic convenience
-
-This evaluation does not conclude the proposal should be rejected—only that these specific concerns, derived from principles articulated by experienced committee members, warrant attention.
-
-**References:** [Full evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/p1255r11_eval.md) ・ [P1255R11 (wg21.link)](https://wg21.link/P1255R11)
-
-#### Experimental Status
-
-This evaluation methodology is experimental. The distilled knowledge, output formats, and evaluation process are all subject to refinement as we learn what serves the committee best. Potential improvements include:
-
-- Better categorization of principles (library-only vs. language-only)
-- Calibrated confidence levels based on accumulated evaluations
-- Automation of initial screening while preserving human review for final assessment
-- Reconciliation of potentially contradictory principles as the knowledge base grows
-
-Feedback from practitioners will shape how this methodology evolves.
-
-### 4.4 Application: Paper Tester
-
-Beyond proposal evaluation against captured expert knowledge, the author developed an independent **paper testing framework** ([WG21_PAPER_TESTER.md](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/WG21_PAPER_TESTER.md)) with criteria for evaluating WG21 proposals.
-
-> **⚠️ Disclaimer**: The criteria in the Paper Tester are based on the author's opinion and are not evidence-based. They represent one perspective on what makes a strong proposal, derived from observations about committee discussions and historical outcomes. The framework was developed with AI assistance and should be treated as experimental—a starting point for discussion rather than authoritative guidance.
-
-**The Paper Tester is not intended to replace human judgment.** It provides a signal and a confidence score—nothing more. Humans must make the final decision. This design reflects a core insight: human judgment and human attention are the valuable, irreducible resources in any evaluation process. AI cannot substitute for expert deliberation, but it can *amplify* expert capability. When AI performs reliable pattern-matching against documented criteria, experienced practitioners achieve higher throughput without sacrificing the quality that comes from human oversight. The tool surfaces concerns; humans decide what to do about them.
-
-The Paper Tester evaluates proposals against 13 categories and includes a "gate" mechanism requiring library proposals to justify why standardization (vs. ecosystem distribution) is necessary. The framework was applied to four papers:
+The framework was applied to four papers:
 
 | Paper | Result | Summary |
 |-------|--------|---------|
@@ -488,9 +427,15 @@ The Paper Tester evaluates proposals against 13 categories and includes a "gate"
 | [P0447R21](https://wg21.link/P0447R21) | 🔴 GATE | Despite exceptional documentation and 21 revisions, failed because no coordination failure was documented; plf::hive already exists as a successful third-party library. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P0447R21-hive.md)) |
 | [P2075R5](https://wg21.link/P2075R5) | 🔴 GATE | Failed because it cited multiple vendor implementations (Intel MKL, cuRAND, rocRAND) as evidence *for* standardization, when this actually demonstrates the ecosystem successfully delivers the functionality without standardization. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P2075R5-philox_engine.md)) |
 
-The full evaluation outputs are available in the [outputs directory](https://github.com/cppalliance/wg21-capturing-knowledge/tree/master/outputs).
+#### Experimental Status
 
-These results illustrate one of the framework's central contentions: that "multiple implementations exist" is evidence the ecosystem works, not evidence that standardization is needed. Whether this criterion is appropriate—and whether it would have correctly filtered historical proposals—remains an open question for committee discussion.
+This methodology is experimental. The distilled knowledge, output formats, and evaluation process are all subject to refinement. Potential improvements include:
+
+- Better categorization of principles (library-only vs. language-only)
+- Calibrated confidence levels based on accumulated evaluations
+- Reconciliation of potentially contradictory principles as the knowledge base grows
+
+Feedback from practitioners will shape how this methodology evolves.
 
 ---
 
@@ -516,7 +461,7 @@ The knowledge exists. The technology exists. The will exists. Let's capture livi
 
 This process is not specific to WG21. The agentic interview workflow described here can be applied to any organization facing knowledge transmission challenges.
 
-The job of the interviewer is not particularly difficult given a reasonable general script. People enjoy talking about themselves and their experiences—especially when asked thoughtful questions about work they're proud of or lessons they've learned the hard way. The interviewer's role is primarily to listen, follow interesting threads, and ask for stories.
+The job of the interviewer is not particularly difficult given a reasonable general script. People enjoy talking about themselves and their experiences—especially when asked thoughtful questions about work they're proud of or lessons they've learned the hard way. The interviewer's role is primarily to listen, follow interesting threads, and ask for stories. More is better than less; large language models are particularly good at separating signal from noise.
 
 A company like Bloomberg could deploy this workflow across the organization to capture and preserve institutional knowledge from senior engineers, traders, and domain experts before they retire or move on. The same applies to any institution where tacit knowledge accumulates in the minds of experienced practitioners: law firms, hospitals, research labs, government agencies.
 
