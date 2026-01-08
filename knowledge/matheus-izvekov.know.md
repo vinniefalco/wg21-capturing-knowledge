@@ -9,7 +9,7 @@
 
 Matheus Izvekov brings a rare perspective to WG21: deep compiler implementation expertise in templates, overload resolution, and partial ordering—areas where most original experts have retired or become inactive. His experience reveals a critical gap between how papers pass through EWG (often without deep technical understanding from voters) and the hard realities discovered later in CWG or during implementation.
 
-His central insight is that **high vote counts in EWG do not indicate understanding**. His first paper achieved near-consensus, yet later revealed that voters hadn't truly grasped the implications—a pattern he believes is systemic. This disconnect stems from the separation of experts (concentrated in CWG) from the design phase (EWG), compounded by simultaneous scheduling that prevents cross-pollination.
+His central insight is that **high vote counts in EWG do not necessarily indicate understanding**. His first paper achieved near-consensus, yet later revealed that voters hadn't truly grasped the implications—a pattern he believes can be a problem, based on his personal experience with a small sample size. This disconnect stems from the separation of experts (concentrated in CWG) from the design phase (EWG), compounded by simultaneous scheduling that prevents cross-pollination.
 
 Matheus also articulates a tension between library and language features: foundational operations like `std::move` pay unnecessary compile-time costs as templates when they could be cheaper and better-diagnosed as language primitives. He warns that the committee's preference for library solutions may be counterproductive when language features would provide a more polished user experience.
 
@@ -21,7 +21,7 @@ Distilled, actionable knowledge that can be applied agentically.
 
 ### P1: Editorial vs Design Bugs Require Different Processes
 
-> *"There's like what do you mean like when you say like a wording bug, there's two classes or two kinds of major bugs... editorial bugs... and then like problems in the wording where like it looks obviously wrong, but like you can't exactly make the case like people didn't want to say that."*
+> *"What do you mean when you say a wording bug? There's two kinds of major bugs... editorial bugs... and then problems in the wording where it looks obviously wrong, but you can't exactly make the case people didn't want to say that."*
 
 **The Principle**: Distinguish between editorial bugs (wording doesn't match clear intent—fixable via CWG directly) and design bugs (unclear or unconsidered intent—requires full EWG paper process).
 
@@ -51,7 +51,7 @@ related-principles: [P2]
 
 ### P2: Papers That Skip EWG Risk Incomplete Specification
 
-> *"His paper basically somehow... didn't go through EWG, right? It went straight to court and got merged... they realized, oh, like this specification is really lacking here because we allow this extension, then like a bunch of code relies on partial ordering... but then like the paper completely lacked any wording explaining how partial ordering works with that."*
+> *"His paper basically somehow... didn't go through EWG. It went straight to core and got merged... they realized this specification is really lacking here because we allow this extension, a bunch of code relies on partial ordering... but the paper completely lacked any wording explaining how partial ordering works with that."*
 
 **The Principle**: Features that bypass EWG review risk having incomplete specifications that only surface during implementation, potentially years later.
 
@@ -82,7 +82,7 @@ related-principles: [P1, P3]
 
 ### P3: Expertise Is Siloed Between CWG and EWG
 
-> *"CWG have some people that are like fully dedicated to CWG, you know, they like almost never in all the rooms, but they have like evolutionary concerns... a lot of papers, you know, maybe they go through EWG too quickly, you know, they wouldn't have gone, they would have gone like in a better shape to core if some of these people were able to attend EWG sessions."*
+> *"CWG has some people fully dedicated to CWG—they're almost never in other rooms, but they have evolutionary concerns... a lot of papers go through EWG too quickly, they would have gone in better shape to core if some of these people were able to attend EWG sessions."*
 
 **The Principle**: The simultaneous scheduling of CWG and EWG prevents experts from contributing to evolution discussions, causing papers to arrive at CWG in suboptimal shape.
 
@@ -113,11 +113,11 @@ related-principles: [P4]
 
 ### P4: High Vote Counts Do Not Indicate Understanding
 
-> *"My first ever paper to the committee and like there was almost basically unanimous consensus, right? And but but like that didn't mean that like people really, you know, understood what what was going on there and they had some difficulty later because of that."*
+> *"My first ever paper to the committee and there was almost basically unanimous consensus. But that didn't mean people really understood what was going on there, and they had some difficulty later because of that."*
 
-**The Principle**: Near-unanimous EWG votes can mask widespread misunderstanding of a paper's implications; consensus indicates political alignment, not technical comprehension.
+**The Principle**: Near-unanimous EWG votes can mask widespread misunderstanding of a paper's implications. Voters sometimes follow the lead of trusted experts on topics they don't fully understand—a reasonable trust mechanism, but one that can obscure whether genuine technical comprehension backs the vote.
 
-**Why It Matters**: Authors may overestimate how well their paper was understood based on vote counts. Problems surface later in CWG or during implementation when actual experts engage with the details.
+**Why It Matters**: Authors may overestimate how well their paper was understood based on vote counts. This is not a flaw in the committee per se—it's unreasonable to expect everyone to be an expert in everything, especially given C++'s complexity. But authors should calibrate expectations accordingly. Problems surface later in CWG or during implementation when actual experts engage with the details.
 
 **When to Apply**: After receiving favorable EWG votes on technically complex papers, especially those involving templates, overload resolution, or specification gaps.
 
@@ -133,7 +133,7 @@ related-principles: [P4]
 kind: principle
 id: P4
 source-type: tacit
-category: process/politics
+category: process/voting
 applies-to: language
 confidence: high
 supported-by: [E3]
@@ -144,7 +144,7 @@ related-principles: [P3]
 
 ### P5: Templates Lack Meaningful Type Checking
 
-> *"How easily, you know, like you can write a template, you know, like that's not really correct, you know, like for all, you know, inputs... and how, you know like not really feasible, or like really would be like really a challenge to like really improve the language to the point where, you know, that that's not an issue anymore... concepts don't really give you that."*
+> *"How easily you can write a template that's not really correct for all inputs... and how it's not really feasible, or would be a challenge to improve the language to the point where that's not an issue anymore... concepts don't really give you that."*
 
 **The Principle**: The compiler cannot verify template correctness for all instantiations; concepts help at call sites but don't provide definition-side checking. Users should minimize template usage accordingly.
 
@@ -175,7 +175,7 @@ related-principles: [P6]
 
 ### P6: Overload Resolution Is Too Complex for Safe Reliance
 
-> *"The rules for overall resolution, they really complicated and no one like really understands them fully, right? Like not even in the committee... people are avoiding, you know, like overload resolution, they, you know, like making the cases where they are at least making where they allowed more restricted."*
+> *"The rules for overload resolution, they're really complicated and no one really understands them fully—not even in the committee... people are avoiding overload resolution, making the cases where it's allowed more restricted."*
 
 **The Principle**: Overload resolution rules are so complex that no one—including committee experts—fully understands all implications. Users should avoid relying on subtle overload resolution behaviors.
 
@@ -206,7 +206,7 @@ related-principles: [P5]
 
 ### P7: Foundational Operations Should Be Language Features
 
-> *"A lot of basic language things, like for example, STD move... they cause a lot of overhead, you know, like in code bays because templates are expensive, right? But a lot of these things... probably be more efficient to make that a language feature instead of library feature... I think like atomic probably would have been better as a language thing."*
+> *"A lot of basic language things, for example std::move... they cause a lot of overhead in code bases because templates are expensive. A lot of these things would probably be more efficient as a language feature instead of library feature... I think atomic probably would have been better as a language thing."*
 
 **The Principle**: Ubiquitous foundational operations (std::move, std::forward, potentially atomics) pay unnecessary compile-time costs as library templates; they should be language features for better performance and diagnostics.
 
@@ -237,7 +237,7 @@ related-principles: [P5]
 
 ### P8: Implementation Capacity Must Constrain Feature Adoption
 
-> *"We have approved like the linear algebra, you know, feature into the C++ standard library, but like I know from my work, my personal relationships, that there's barely anyone right now working on the C++, right?... you're probably only gonna get them done in like 5 years."*
+> *"We have approved the linear algebra feature into the C++ standard library, but I know from my personal relationships that there's barely anyone right now working on [libc++]... you're probably only gonna get them done in 5 years."*
 
 **The Principle**: The committee should throttle feature adoption based on available implementation capacity; approving features faster than they can be implemented wastes committee resources and creates user expectations that can't be met.
 
@@ -268,7 +268,7 @@ related-principles: [P9]
 
 ### P9: Vocabulary Types Justify Standardization
 
-> *"They should be more about the idea of building a vocabulary, right?... STD vector being in the standard library helped because like people are still gonna want to implement their own vectors because they're going to be specialized... but if they don't have any reason to be different, you know, from STD vector in some aspect... they shouldn't be."*
+> *"They should be more about the idea of building a vocabulary... std::vector being in the standard library helped because people are still gonna want to implement their own vectors because they're going to be specialized... but if they don't have any reason to be different from std::vector in some aspect... they shouldn't be."*
 
 **The Principle**: Standard library additions are justified when they establish vocabulary types that enable interoperability between libraries; mere usefulness is insufficient justification.
 
@@ -299,19 +299,19 @@ related-principles: [P8]
 
 ### P10: Knowledge Is Lost in Committee Transitions
 
-> *"A lot of times I need to figure out, you know, like why like something in the paper, or some idea was considered, you know, and you cannot find that on the paper, right?... there is also before that a transition between the mathematics study group and EWG, right?... a lot of discussions about that were probably lost in the transition."*
+> *"A lot of times I need to figure out why something in the paper, or some idea was considered, and you cannot find that in the paper... there is also before that a transition between the Numerics Study Group (SG6) and EWG... a lot of discussions about that were probably lost in the transition."*
 
-**The Principle**: Rationale and evidence discussed orally in study groups and EWG sessions is systematically lost because it's not recorded in papers; this makes retrospective analysis of decisions nearly impossible.
+**The Principle**: Rationale and evidence discussed orally in study groups and EWG sessions is often lost because it's not recorded in papers; this makes retrospective analysis of decisions difficult.
 
-**Why It Matters**: Without recorded rationale, the committee cannot learn from past decisions, cannot evaluate whether features achieved their goals, and cannot understand why alternatives were rejected.
+**Why It Matters**: Without recorded rationale, the committee cannot learn from past decisions, cannot evaluate whether features achieved their goals, and cannot understand why alternatives were rejected. However, there is nuance: requiring volunteer paper authors to document every objection raised may be counterproductive. Published papers typically address concerns that had measurable impact on consensus (e.g., "come back after addressing these concerns" votes). Minor Q&A that received satisfactory answers and didn't block progress may only appear in transcripts—which are not public. Whether to make committee deliberations fully transparent to ISO outsiders is a separate discussion.
 
-**When to Apply**: When authoring papers (include rationale), when reviewing (ask for rationale to be documented), when doing retrospectives.
+**When to Apply**: When authoring papers (include significant rationale), when reviewing (ask for important rationale to be documented), when doing retrospectives.
 
 **Red Flags**:
-- Paper lacks "alternatives considered" section
-- Rationale only exists in meeting minutes (if at all)
-- Author says "we discussed this in SG-X" without documenting outcome
-- Unable to determine why a design choice was made
+- Paper lacks "alternatives considered" section for significant design choices
+- Key rationale only exists in meeting minutes (if at all)
+- Author says "we discussed this in SG-X" without documenting outcome for major decisions
+- Unable to determine why a significant design choice was made
 
 **Supporting Experiences**: E5
 
@@ -330,11 +330,11 @@ related-principles: [P4]
 
 ### P11: Implementation Experience Reveals Design Flaws
 
-> *"Louis, who is the libc++ maintainer, he came up and made a little showing tale about his experience implementing it in libc++, and he had like a lot of negative, you know, impressions... his presentation had an impact on my vote against Pablo's paper."*
+> *"Louis, who is the libc++ maintainer, came up and presented about his experience implementing it in libc++, and he had a lot of negative impressions... his presentation had an impact on my vote against Pablo's paper."*
 
 **The Principle**: Testimony from library implementers about actual implementation experience should heavily influence votes; negative implementation experience is strong evidence of design problems.
 
-**Why It Matters**: Implementers discover practical issues that paper authors and reviewers miss. Their experience represents ground truth about whether a design works in practice.
+**Why It Matters**: Implementers discover practical issues that paper authors and reviewers miss. Their experience represents ground truth about whether a design works in practice. Note: This principle reflects a historical weakness—the committee is now significantly more proactive about requesting implementation experience than in the past. This observation arose in discussion of past mistakes.
 
 **When to Apply**: When evaluating proposals, especially those with competing designs or controversy.
 
@@ -390,13 +390,13 @@ supports: [P1]
 
 ---
 
-### E2: P3310 — The Template Template Parameter Matching Disaster
+### E2: P3310 — The Template Template Parameter Matching Blunder
 
-**Context**: James Touton proposed relaxing template template parameter matching rules (P0522) so that a template template parameter would accept any template argument that would work for all uses within the template body—a type-theoretically sound extension.
+**Context**: James Touton proposed relaxing template template parameter matching rules (P0522) so that a template template parameter would accept any template argument that would work for all uses within the template body—a type-theoretically sound extension. Importantly, this proposal was backed by the committee at the time—this was not solely James Touton's decision.
 
 **What Happened**: The paper went straight to CWG without EWG review and was applied as a defect report, retroactively changing the language. When compilers began implementing it, they discovered the specification completely lacked wording for how partial ordering should work with the new matching rules. Compilers implemented incompatible workarounds. Clang couldn't claim C++17 conformance for years because they implemented no workarounds and kept the feature behind a disabled-by-default flag.
 
-**The Outcome**: Failure. Matheus eventually developed a proper solution while at Bloomberg, implemented it in Clang, and wrote P3310 to standardize the fix. James Touton joined as co-author for the wording. The saga became a cautionary tale cited when arguing that papers must go through EWG.
+**The Outcome**: A significant setback. Matheus eventually developed a proper solution while at Bloomberg, implemented it in Clang, and wrote P3310 to standardize the fix. James Touton joined as co-author for the wording. The saga became a cautionary tale cited when arguing that papers must go through EWG.
 
 **The Lesson**: Features that seem like clean theoretical extensions can have devastating practical consequences when they interact with complex subsystems like partial ordering. Skipping EWG review doesn't save time—it defers and multiplies the cost.
 
@@ -408,9 +408,9 @@ supports: [P1]
 kind: experience
 id: E2
 source-type: explicit
-category: history/failures
+category: history/setbacks
 applies-to: language
-outcome: failure
+outcome: setback
 features: [template-template-parameters, partial-ordering]
 supports: [P2]
 -->
@@ -435,7 +435,7 @@ supports: [P2]
 kind: experience
 id: E3
 source-type: explicit
-category: process/politics
+category: process/voting
 applies-to: language
 outcome: mixed
 features: [templates, partial-ordering, deduction]
@@ -473,13 +473,13 @@ supports: [P11]
 
 ### E5: Linear Algebra — Approved Without Implementers
 
-**Context**: The linear algebra proposal went through the mathematics study group and eventually was approved for C++26's standard library.
+**Context**: The linear algebra proposal went through the Numerics Study Group (SG6) and eventually was approved for C++26's standard library.
 
-**What Happened**: Matheus observes that "there's barely anyone right now working on [libc++]" and the feature represents "a crazy amount of work for not having anyone to do it." He estimates implementations may not arrive for 5 years. When pressed on the evidence of need (coordination problems, interoperability friction), he couldn't recall specific evidence being presented—only that "from my personal perspective" such vocabulary types are valuable.
+**What Happened**: Matheus observes that "there's barely anyone right now working on [libc++]" and the feature represents "a crazy amount of work for not having anyone to do it." He estimates implementations may not arrive for 5 years. Note: Matheus was not closely following this paper through the process, so he could not speak to the specific evidence presented for standardization. His observation is limited to the implementation capacity concern.
 
-**The Outcome**: The feature was approved, but without clear implementation timeline or documented evidence of the specific coordination problems it solves. Rationale discussed in the mathematics study group was not preserved in the paper.
+**The Outcome**: The feature was approved, but without clear implementation timeline. Rationale discussed in the Numerics Study Group (SG6) may not have been fully preserved in the paper.
 
-**The Lesson**: Features can be approved faster than they can be implemented, creating a backlog. Rationale established in study groups may not survive the transition to EWG/LEWG papers. "Useful" is accepted as sufficient justification even when evidence of specific coordination failures is lacking.
+**The Lesson**: Features can be approved faster than they can be implemented, creating a backlog. Rationale established in study groups may not survive the transition to EWG/LEWG papers.
 
 > *"We have approved the linear algebra feature into the C++ standard library, but I know from my personal relationships that there's barely anyone right now working on [libc++]... you're probably only gonna get them done in like 5 years."*
 
@@ -567,7 +567,7 @@ derived-from: [P8, P9, P10, P11]
 
 <!-- METADATA
 kind: checklist
-category: process/politics
+category: process/voting
 applies-to: language
 proposal-type: feature
 derived-from: [P3, P4]
@@ -587,7 +587,7 @@ derived-from: [P3, P4]
 
 5. **What happened to niebloids?** Matheus mentions Eric Niebler "dropped or is not trying to standardize them anymore"—what caused this change and what replaced them?
 
-6. **What is the actual evidence that was presented for linear algebra standardization?** Matheus couldn't recall it. Was there documented evidence of interoperability friction, or was "useful for games/physics" the extent of the justification?
+6. **What is the actual evidence that was presented for linear algebra standardization?** Matheus was not following this paper closely, so could not speak to this. This remains an open question for someone who was involved in the SG6 discussions.
 
 7. **Which template-related areas have "retired or inactive" experts?** Matheus mentions partial ordering, template argument deduction, and partial template specialization. Who were these experts, and is there documented knowledge from them?
 
