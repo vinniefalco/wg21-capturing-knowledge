@@ -112,7 +112,7 @@ Without these principles, newer participants can only imitate past decisions—t
 
 ### 1.5 Case Study: The `[[nodiscard]]` Policy Papers
 
-[SD-9: Library Evolution Policies](https://isocpp.org/std/standing-documents/sd-9-library-evolution-policies) represents a well-intentioned attempt to capture policy knowledge. Yet the document dates from mid-2014 and contains only one item. The supporting papers reveal the challenge of transmitting judgment even when people consciously try.
+[SD-9: Library Evolution Policies](https://isocpp.org/std/standing-documents/sd-9-library-evolution-policies) represents a well-intentioned attempt to capture policy knowledge. Yet the document dates from mid-2024 and contains only one item. The supporting papers reveal the challenge of transmitting judgment even when people consciously try.
 
 The foundational paper [P2267R1: Library Evolution Policies](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2023/p2267r1.html) captures *process*—how policies are adopted—while [P3201R1: LEWG [[nodiscard]] policy](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2024/p3201r1.html) captures only *outcome*—what the policy says. Neither transmits the judgment needed to apply the policy to novel situations.
 
@@ -434,6 +434,16 @@ Howard also articulates the fundamental structural limitation of WG21: it's a vo
 - ABI stability concerns should trigger cost/benefit analysis, not automatic rejection; some ABI breaks are worth the transition cost
 
 **References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/inputs/howard-hinnant.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/knowledge/howard-hinnant.know.md)
+
+#### The Power of Stories
+
+When asked about `string_view`'s reputation as "dangerous" (it can dangle), Howard offered this:
+
+> *"Any good tool is dangerous. I mean, I'm a big fan of pocket knives and kitchen knives... they can really help in the kitchen or they can chop your fingers off. You just have to know how to use them."*
+
+This is the kind of insight that no policy document could capture. The knife analogy is visual, memorable, and instantly teachable—a newcomer hearing it once will remember it forever. It conveys not just a position (dangerous tools are acceptable) but a *philosophy* (C++ trusts its users; power matters more than protection from misuse).
+
+The storytelling format of interviews yields surprisingly sharp insights precisely because experts think in stories. When Howard reaches for the knife analogy, he's accessing decades of accumulated judgment compressed into a vivid image. Written specifications capture *what*; stories capture *why* and *how to think*.
 
 ### 4.3 Application: Paper Preflight
 
