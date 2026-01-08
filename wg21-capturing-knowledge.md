@@ -514,6 +514,8 @@ If you are an experienced WG21 participant willing to share your knowledge throu
 
 If you are a newer participant who would benefit from access to captured knowledge, your interest demonstrates the demand for this project.
 
+If you are interested in conducting similar interviews within your organization or among other WG21 members, the authors would be happy to share the methodology and materials. The more institutions that capture their living knowledge, the better.
+
 The knowledge exists. The technology exists. The will exists. Let's capture living knowledge while we still can.
 
 ### 5.1 Beyond WG21
