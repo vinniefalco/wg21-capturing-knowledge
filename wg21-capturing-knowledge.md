@@ -375,7 +375,7 @@ The economics of generative AI fundamentally invert traditional cost functions. 
 
 Generative AI doesn't devalue expertise—it *reveals* that judgment was always the valuable part. Production was just the tax experts paid to exercise judgment.
 
-In the generative AI economy, **human attention becomes the scarcest and most valuable substance**. Everything else scales; attention doesn't. The institution that captures and allocates expert attention most efficiently wins. Agentic knowledge capture is, fundamentally, an *attention allocation system*—routing the right questions to the right experts, filtering noise from signal, and ensuring that when a human reviews synthesized output, it matters.
+In the generative AI economy, **human attention becomes the scarcest and most valuable resource**. Everything else scales; attention doesn't. The institution that captures and allocates expert attention most efficiently wins. Agentic knowledge capture is, fundamentally, an *attention allocation system*—routing the right questions to the right experts, filtering noise from signal, and ensuring that when a human reviews synthesized output, it matters.
 
 This reframes any concern about displacement:
 
