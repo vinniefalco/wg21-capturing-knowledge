@@ -30,29 +30,33 @@ Samo Burja's *Great Founder Theory* provides a useful framework for understandin
 - **Dead tradition**: External forms transferred (documents, procedures), but not the underlying understanding
 - **Lost tradition**: Not transferred at all
 
+WG21 has procedures, documents, and voting records—the external forms survive. But do newer participants truly comprehend *why* certain proposals succeed and others fail?
+
 > *"A living tradition of knowledge is a tradition whose body of knowledge has been successfully transferred, i.e., passed on to people who comprehend it."*
 
-The challenge facing WG21 is keeping its tradition of knowledge *alive*—ensuring that the deep understanding of C++ standardization passes to each new generation of participants.
+The challenge facing WG21 is keeping its tradition *living*—ensuring that the deep understanding of C++ standardization passes to each new generation of participants, not just the paperwork.
 
 ### 1.2 Tacit Knowledge: What Can't Be Written Down
 
-Much of what experts know is **tacit knowledge**—understanding that cannot easily be transmitted through written documentation. A master craftsman knows things about their trade that they've never articulated, perhaps never *could* articulate. They demonstrate judgment in novel situations that no rulebook could anticipate.
+Much of what experts know is **tacit knowledge**—understanding that cannot easily be transmitted through written documentation. A master craftsman knows things about their trade that they've never articulated, perhaps never *could* articulate. They demonstrate judgment in novel situations that no rulebook could anticipate. WG21's founding-era experts developed this judgment through decades of direct engagement with the language's evolution—experience that cannot be conveyed through SD documents.
 
 > *"Since it cannot be easily transferred via texts, tacit knowledge must be taught via direct practice and extensive interaction with a skilled practitioner. Traditional master-apprentice relationships are the gold standard for these training relationships... Otherwise, the knowledge simply isn't transferred, and with many crafts, is lost forever."*
 
-When Howard Hinnant evaluates whether a library proposal has sufficient field experience, he's drawing on decades of tacit knowledge about what has worked and what has failed. When Bjarne Stroustrup assesses whether a language feature maintains coherence with C++'s design philosophy, he's applying judgment that cannot be reduced to a checklist.
+WG21 has no formal apprenticeship structure. When Howard Hinnant evaluates whether a library proposal has sufficient field experience, he's drawing on decades of tacit knowledge about what has worked and what has failed—knowledge he developed through implementation experience, not committee documents. When Bjarne Stroustrup assesses whether a language feature maintains coherence with C++'s design philosophy, he's applying judgment that cannot be reduced to a checklist.
 
 This tacit knowledge is WG21's most valuable asset. It guides the committee toward good decisions and away from bad ones. And it lives primarily in the minds of people who have been doing this work for decades.
 
 ### 1.3 The Succession Problem
 
-Every institution faces what Great Founder Theory calls the **succession problem**: how to transfer both authority and capability from one generation to the next.
+Every institution faces what Great Founder Theory calls the **succession problem**: how to transfer both authority and capability from one generation to the next. WG21 is no exception—as founding-era participants reduce their involvement, who will carry forward their accumulated wisdom?
 
 > *"The succession problem has two components: power succession (handing off the reins of the institution, keeping it piloted) and skill succession (transferring the skill needed to pilot the institution well, keeping it a live player)."*
 
-WG21 has handled power succession reasonably well. The Convener position has transitioned, chairs rotate, meetings happen, standards ship. But skill succession—transferring the tacit knowledge of good standardization—has been more challenging.
+WG21 has handled power succession reasonably well—the formal mechanisms work. The Convener position has transitioned, chairs rotate, meetings happen, standards ship. But skill succession—transferring the tacit knowledge of good standardization—has been more challenging. The committee can continue operating indefinitely, but can it continue making *good decisions*?
 
 > *"If power succession is successful but skill succession is not, then the institution remains piloted, but not a live player. Someone is at the controls, but they don't really know how to use them."*
+
+This is the risk WG21 faces: a committee that follows procedures correctly while gradually losing the judgment that made the procedures meaningful.
 
 ### 1.4 WG21 Transmits Conclusions, Not Judgment
 
@@ -100,9 +104,11 @@ P2000 articulates philosophy—valuable for understanding committee goals. But i
 - **Failure case studies**: Why certain historical features failed, and how to recognize similar patterns
 - **Verification mechanisms**: How to check whether understanding is genuine
 
+When a new vocabulary type comes to LEWG, the question isn't just "does this follow SD-9?" but "does this belong in the standard at all?" That judgment requires understanding the *generating principles* behind C++ standardization.
+
 > *"Someone who understands the generating principles of a tradition will be able to verify or check their knowledge, but, more importantly, they will also be able to extend it while remaining faithful to the original body of knowledge."*
 
-The generating principles of C++ standardization—why certain things belong and others don't—are not documented anywhere. They exist in the minds of founding-era participants.
+Without these principles, newer participants can only imitate past decisions—they cannot reason about genuinely novel cases. The generating principles of C++ standardization—why certain things belong and others don't—exist in the minds of founding-era participants, undocumented.
 
 ### 1.5 Case Study: The `[[nodiscard]]` Policy Papers
 
@@ -253,9 +259,11 @@ These quotes demonstrate that **the knowledge is alive in experts' minds**:
 | Nico Josuttis | Integration requirements, specific failure case studies |
 | Alisdair Meredith | Exception hierarchy history, design decisions not documented |
 
+A participant can attend every meeting, follow every procedure, vote on every poll—and still lack genuine understanding. They know *what* the committee does without knowing *why*.
+
 > *"Students of a tradition can appear to possess understanding of a tradition's body of knowledge despite actually lacking it. This is counterfeit understanding."*
 
-The risk is not that WG21's knowledge is lost—it's that it remains locked in the minds of a few experts while newer participants develop counterfeit understanding: knowing the procedures without grasping the principles.
+The risk facing WG21 is not that knowledge is lost entirely—it's that it remains locked in the minds of a few experts while newer participants develop counterfeit understanding: knowing the procedures without grasping the principles that make them meaningful.
 
 ---
 
@@ -282,9 +290,11 @@ Written documentation struggles to capture tacit knowledge because experts often
 - **Capturing stories**: Narratives about specific decisions and their outcomes
 - **Revealing judgment**: How experts approach novel situations
 
+Left to natural processes, knowledge degrades with each generation. WG21 cannot assume that informal mentorship and meeting attendance will preserve its institutional wisdom.
+
 > *"Errors in transmission from one generation to the next are almost guaranteed and thus require proactive measures to correct them and maintain the fidelity of a tradition."*
 
-Interviews are a proactive measure to capture knowledge before transmission errors compound.
+Interviews are precisely such a proactive measure—a deliberate intervention to capture knowledge before transmission errors compound into institutional amnesia.
 
 ### 3.3 Interview Guide
 
@@ -356,6 +366,23 @@ We have developed an agentic knowledge extraction framework ([WG21_CAPTURE_RULE.
 The output is dual-purpose: human-readable markdown for expert review and verification, with embedded metadata enabling downstream agentic processing. Each principle includes "When to Apply" conditions and "Red Flags" for violations; each experience links back to the principles it supports.
 
 The technology to preserve WG21's institutional wisdom exists today.
+
+### 3.5 Does This Devalue Expert Knowledge?
+
+If AI can help capture and synthesize knowledge, does expertise become less valuable?
+
+The economics of generative AI fundamentally invert traditional cost functions. Before LLMs, production was expensive—transcribing interviews, synthesizing themes, drafting documents required skilled human time. Judgment was comparatively cheap—a quick review, an approval, a correction. After generative AI, this inverts: production becomes nearly free (AI transcribes, synthesizes, and drafts at marginal cost), while judgment becomes the scarce resource (requiring irreducible human attention).
+
+Generative AI doesn't devalue expertise—it *reveals* that judgment was always the valuable part. Production was just the tax experts paid to exercise judgment.
+
+In the generative AI economy, **human attention becomes the scarcest and most valuable substance**. Everything else scales; attention doesn't. The institution that captures and allocates expert attention most efficiently wins. Agentic knowledge capture is, fundamentally, an *attention allocation system*—routing the right questions to the right experts, filtering noise from signal, and ensuring that when a human reviews synthesized output, it matters.
+
+This reframes any concern about displacement:
+
+- **Comparative advantage shifts**: Experts focus on judgment rather than production. Howard Hinnant's value lies in knowing which library proposals lack sufficient field experience, not in typing out his reasoning. The AI handles transcription and synthesis; the expert provides the irreplaceable judgment.
+- **Capability expansion**: More people can contribute meaningfully. An expert who might never write a paper can share insights through a one-hour interview. The total knowledge captured increases even as individual time requirements decrease.
+
+The economics are clear: judgment is now the bottleneck, and experts own the bottleneck. This project doesn't diminish their role—it amplifies it.
 
 ---
 
@@ -475,11 +502,11 @@ Feedback from practitioners will shape how this methodology evolves.
 
 The knowledge we need to capture is alive in the minds of WG21's most experienced participants. Bjarne Stroustrup is 75. Herb Sutter is 60. The founding generation's members are not getting younger. None of us are.
 
-But this is not an obituary—it's an opportunity. The experts are here, they're willing to share what they know, and we now have the tools to capture and preserve their insights. The window is open, but it won't stay open forever.
+But this is not an obituary—it's an opportunity. The experts are here, they're willing to share what they know, and we now have the tools to capture and preserve their insights. The window is open, but it won't stay open forever. WG21 is not immune to the forces that erode all institutions.
 
 > *"Over time, functional institutions decay. As the landscape of founders and institutions changes, so does the landscape of society."*
 
-Decay is not inevitable if we act. C++ has earned a standards committee that can maintain its health for generations. The founding generation built something remarkable. Preserving their wisdom is how we honor that achievement—and how we ensure WG21 remains a living tradition of knowledge rather than a dead one.
+Decay is not inevitable if we act. WG21 can choose to be proactive—to capture its living knowledge while the founding generation remains available. C++ has earned a standards committee that can maintain its health for generations. The founding generation built something remarkable. Preserving their wisdom is how we honor that achievement—and how we ensure WG21 remains a living tradition of knowledge rather than a dead one.
 
 **What you can do:**
 
