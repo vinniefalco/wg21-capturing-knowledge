@@ -401,19 +401,19 @@ To demonstrate what captured knowledge looks like, we interviewed several promin
 
 ### 4.1 Matheus Izvekov
 
-Matheus Izvekov brings a rare perspective to WG21: deep compiler implementation expertise in templates, overload resolution, and partial ordering—areas where most original experts have retired or become inactive. His experience reveals a critical gap between how papers pass through EWG (often without deep technical understanding from voters) and the hard realities discovered later in CWG or during implementation.
+Matheus Izvekov brings a rare perspective to WG21: deep compiler implementation expertise in templates, overload resolution, and partial ordering—areas where most original experts have retired or become inactive. His experience reveals a gap between how papers pass through EWG (often without deep technical understanding from voters) and the hard realities discovered later in CWG or during implementation.
 
-His central insight is that **high vote counts in EWG do not indicate understanding**. His first paper achieved near-consensus, yet later revealed that voters hadn't truly grasped the implications—a pattern he believes is systemic. This disconnect stems from the separation of experts (concentrated in CWG) from the design phase (EWG), compounded by simultaneous scheduling that prevents cross-pollination.
+His central insight is that **high vote counts in EWG do not necessarily indicate understanding**. His first paper achieved near-consensus, yet later revealed that voters hadn't truly grasped the implications—a pattern he believes can be a problem, based on his personal experience with a small sample size. This disconnect stems from the separation of experts (concentrated in CWG) from the design phase (EWG), compounded by simultaneous scheduling that prevents cross-pollination. Importantly, this is not a flaw in the committee per se—it's unreasonable to expect everyone to be an expert in everything, especially given C++'s complexity. Voters often follow the lead of trusted experts on topics they don't fully understand, which is a reasonable trust mechanism.
 
 Matheus also articulates a tension between library and language features: foundational operations like `std::move` pay unnecessary compile-time costs as templates when they could be cheaper and better-diagnosed as language primitives. He warns that the committee's preference for library solutions may be counterproductive when language features would provide a more polished user experience.
 
 **Key Insights:**
 
-- Near-unanimous EWG votes can mask widespread misunderstanding of a paper's implications; consensus indicates political alignment, not technical comprehension
+- Near-unanimous EWG votes can mask widespread misunderstanding of a paper's implications; voters sometimes follow trusted experts on topics they don't fully understand—a reasonable trust mechanism, but one that can obscure whether genuine comprehension backs the vote
 - Features that bypass EWG review risk incomplete specifications that only surface during implementation—potentially years later
 - The simultaneous scheduling of CWG and EWG prevents experts from contributing to evolution discussions, causing papers to arrive at CWG in suboptimal shape
 - The committee should throttle feature adoption based on available implementation capacity; approving features faster than they can be implemented wastes resources
-- Rationale and evidence discussed orally in study groups is systematically lost because it's not recorded in papers, making retrospective analysis nearly impossible
+- Rationale discussed orally in study groups is often lost because it's not recorded in papers; however, requiring authors to document every objection may be counterproductive—papers typically address concerns with measurable consensus impact
 
 **References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/inputs/matheus-izvekov.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/knowledge/matheus-izvekov.know.md)
 
