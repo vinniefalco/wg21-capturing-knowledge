@@ -445,7 +445,89 @@ This is the kind of insight that no policy document could capture. The knife ana
 
 The storytelling format of interviews yields surprisingly sharp insights precisely because experts think in stories. When Howard reaches for the knife analogy, he's accessing decades of accumulated judgment compressed into a vivid image. Written specifications capture *what*; stories capture *why* and *how to think*.
 
-### 4.3 Application: Paper Preflight
+### 4.3 Dave Abrahams (From Existing Documentary Footage)
+
+Dave Abrahams was present at Boost's founding, instrumental in establishing its peer review culture, and deeply involved in standardization efforts—most notably bringing exception safety guarantees to the C++ standard library. His interview was not conducted by the paper authors; it was recorded as part of a separate documentary project on Boost's history. This demonstrates a powerful extension of the knowledge capture workflow: **existing video content can be processed through the same agentic pipeline**.
+
+YouTube alone contains thousands of hours of conference talks, panel discussions, and interviews with WG21 participants. Much of this content has never been systematically processed for knowledge extraction. The same workflow that synthesizes knowledge from purpose-conducted interviews can be applied to this vast archive—transcribe the audio, run the capture rule, and produce structured knowledge files.
+
+Dave's central contribution is articulating the **philosophy of libraries as infrastructure**. Libraries enable domain experts to focus on their actual expertise rather than reinventing fundamental components. "Every time [programmers] have to go on an excursion to build an algorithm that is standard or a data structure... they're doing something that there's economic pressure on them not to give it the attention it deserves." This principle—that libraries free cognitive resources—explains why standardization matters: it shifts work from thousands of individual programmers to a few experts who can give components the attention they deserve.
+
+He also provides a foundational account of how consensus-based collaboration can achieve great things. His exception safety work succeeded despite him not being a committee member with voting rights—he achieved it entirely through persuasion and education. "What the committee demonstrated for me at that time was, contrary to what a lot of people say about design by committee... you can actually accomplish great things by consensus."
+
+Crucially, Dave also articulates why he eventually left C++: the language's accumulated legacy made it unable to serve his mission of "empowering programmers." The standard grew to thousands of pages; the committee couldn't agree on evolution principles; complexity accumulated without corresponding simplification. This cautionary perspective—from someone who helped build C++'s success—is precisely the kind of hard-won wisdom that should inform current standardization decisions.
+
+**Key Insights:**
+
+- Standardize only components that have demonstrated real-world success through actual use, not theoretical designs; the committee's straying from this principle for STL template features was "a black eye for the committee"
+- Libraries provide more than code—they provide paradigms and conventions that eliminate entire categories of design decisions for users
+- Consensus-based processes, when properly facilitated, can produce excellent technical outcomes; focus on education and understanding rather than political maneuvering
+- Effective technical leadership means moderating discussions so all arguments are heard, remaining non-partisan toward solutions; Beman Dawes's ecumenical leadership style created a level of respect that attracted high-caliber contributors
+- Languages that cannot shed legacy features eventually become too complex for anyone to master; C++ "has become complex and difficult to the point of impracticality"
+- The best technical work uncovers existing truths rather than creating arbitrary constructs; approach problems as exploration toward the right answer, not competition between proposed solutions
+
+**References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/inputs/dave-abrahams.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/knowledge/dave-abrahams.know.md)
+
+### 4.4 Sean Parent (From Existing Documentary Footage)
+
+Sean Parent, a senior principal scientist at Adobe who previously worked at Apple and Google, offers a unique perspective spanning three decades of C++ infrastructure work. Like Dave Abrahams, his interview comes from the same documentary project on Boost's history, further demonstrating how existing video content can feed the knowledge capture pipeline.
+
+Parent's central contribution is framing C++ as a **Shakespearean tragedy**—a protagonist whose virtues have been undermined by accumulated complexity and institutional failures. In his "Tragedy of C++" keynote, he presents `std::pair` as exhibit A: "std::pair within the standard library is something close to 2000 lines of code. It's ridiculous... if your example for how to write a pair of two values is 2000 lines of code, the complexity is more than most reasonable developers can digest." When the canonical implementation of the simplest possible composite type is incomprehensible, the language has failed pedagogically.
+
+He provides crucial historical context on Boost's role in keeping C++ alive. The 13-year gap between C++98 and C++11 could have killed the language through stagnation: "I think C++ in some sense would've greatly diminished during that time period just from stagnation." Boost filled this void, and many of its innovations became C++11 features.
+
+Parent also drove the **licensing consolidation** that enabled commercial adoption. Early Boost had over 100 different licenses—one per contributor—creating enormous friction for enterprise legal review. He pushed Dave Abrahams to establish the unified Boost Software License, making Adobe the first major company to officially adopt Boost.
+
+Most critically, Parent diagnoses the standards committee's systemic dysfunction: "Every decision that the standards committee tends to make tends to almost be made in isolation. And they don't then document the rationale for that decision. And so when a similar decision is made, they may come up with a different answer." This lack of documented design principles is, in his view, the root cause of C++'s accumulated inconsistencies and complexity.
+
+**Key Insights:**
+
+- High-quality open-source libraries can sustain a language during standardization stagnation and seed future evolution; Boost's role in the "lost decade" was existential, not merely convenient
+- License fragmentation kills commercial adoption even for technically excellent libraries; consolidating to a single, commercially-friendly license removes friction that legal departments use to say "no"
+- The standard library should be readable exemplars of good practice, not baroque monuments to optimization; when trivial types require thousands of lines, the language has failed
+- Standards bodies must document rationale for decisions and maintain explicit design principles; without this, similar questions get inconsistent answers and languages accrete contradictions
+- Meta-programming should be implementation technique for library authors, not exposed interface; Stepanov always viewed it as "a hack so he could implement generic programming"
+- Political deadlock between prominent figures can kill technically sound proposals; the Concepts C++ rejection cost C++ a decade and lost Doug Gregor to Swift
+- C++ has over-focused on micro-optimizations while leaving 99%+ of modern hardware performance (GPU, SIMD) inaccessible through standard means
+
+**References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/inputs/sean-parent.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/knowledge/sean-parent.know.md)
+
+#### Independent Validation of the Knowledge Capture Thesis
+
+Sean Parent's critique of committee dysfunction is, in effect, an independent call for the solution this paper proposes. Without knowing the paper's thesis, he diagnoses exactly the problem that systematic knowledge capture addresses:
+
+> *"The biggest problem with the standards committee is an unwillingness to specify what the goals are and basically what the rules are... every decision that the standards committee tends to make tends to almost be made in isolation. And they don't then document the rationale for that decision. And so when a similar decision is made, they may come up with a different answer."*
+
+This is a direct call for explicit knowledge capture. The "goals," "rules," and "rationale" he wants documented are precisely the Principles this workflow extracts. He even provides a concrete example of what a captured principle should look like:
+
+> *"Even what I would consider basic things like saying all new types within the language should be regular, uh, doesn't happen and doesn't get held up."*
+
+"All new types should be regular" is exactly the form of actionable, verifiable principle that the capture rule produces. Parent is describing, from painful experience, the absence of the very artifact this paper proposes to create.
+
+### 4.5 Dave Abrahams & Doug Gregor (Dinner Reunion)
+
+The most candid interview in this collection comes from an unexpected format: a verite dinner conversation between Dave Abrahams, Doug Gregor, and their spouses, reuniting after years of estrangement following tensions at Apple. This documentary footage captures the kind of unguarded reflection that formal interviews rarely achieve.
+
+The conversation centers on what may be C++ standardization's most instructive failure: the **original Concepts proposal**. Doug Gregor spent years implementing Concepts in GCC, traveling repeatedly to Texas A&M to negotiate a unified design with Bjarne Stroustrup, and shepherding hundreds of pages of proposals through the committee. The proposal was formally accepted and merged into the draft standard. Then, approximately one week before the Frankfurt meeting in 2009, Bjarne sent an email withdrawing his support unless incompatible changes were made. Years of work were undone.
+
+Doug's reflection captures the damage: "I knew how much effort it took to get there. And I knew it could disappear on the whim of one person. One bad email chain. And it's hard to personally invest in something that can go away like that." This experience drove both him and Dave away from C++ language work entirely.
+
+The core lesson they articulate is that **standards committees must standardize existing practice, not invent**: "Standards committees should not invent per se, they should take what is known to work well and enshrine it so everyone can build on it." Boost succeeded precisely because it provided a proving ground outside the committee where designs could be tested extensively before standardization. The Concepts proposal failed because—despite having an implementation—it lacked broad real-world validation from independent users.
+
+They also describe carrying these lessons forward to Swift. Chris Lattner deliberately made Swift unstable for its first several years, allowing the team to discover what worked before committing. When asked about Swift's evolution process, Dave's answer was simple: "Boost did it. Let's just do it again." Doug notes that C++ now lacks what Boost once provided: "They're missing the experimentation to build up what is the best practice before we get into the language."
+
+**Key Insights:**
+
+- Standards bodies should only standardize designs proven through extensive real-world use; invention and experimentation must happen outside the standardization process
+- Having an implementation proves something *can* work; having field experience from independent users proves it *does* work—both are necessary, but field experience is harder and more important
+- One influential person withdrawing support can kill years of collaborative work, even after formal approval; this political risk makes major standardization investments precarious
+- Presenting complex techniques to committees requires reframing them in simple, familiar terms; Jeremy Siek saved the tuple proposal by saying "it's just a typo" and writing something "boring and simple"
+- New languages or features benefit from deliberate instability periods where breaking changes are expected, allowing real-world learning before permanent commitment
+- Languages need external proving grounds (like Boost was for C++) where ideas can be tested extensively before standardization; the committee structure itself cannot serve this function
+
+**References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/inputs/dave-abrahams2.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/knowledge/dave-abrahams2.know.md)
+
+### 4.6 Application: Paper Preflight
 
 What do we do with this distilled knowledge?
 
@@ -472,7 +554,7 @@ The framework was applied to ten papers:
 
 > **⚠️ Not Automatic Acceptance**: We are not arguing that papers passing automated evaluation should be automatically accepted. The paper tester is a possible *first step* in a paper's journey—a way to surface signals that humans must then review and judge. The value is efficiency: incoming papers must be read, and for best results, read by experts whose attention is scarce. Automated application of distilled knowledge synthesizes useful signals at low cost, freeing expert attention for cases that genuinely require it. The tool augments human judgment; it does not replace it.
 
-### 4.4 Reproducibility and Iteration
+### 4.7 Reproducibility and Iteration
 
 While the capture rule and paper tester reflect subjective judgments that have not passed through rigorous human review, the outputs they produce are reproducible. Anyone can re-prompt the capture rule on the provided transcripts or re-prompt the paper tester on the original papers and obtain similar results.
 
