@@ -527,7 +527,26 @@ They also describe carrying these lessons forward to Swift. Chris Lattner delibe
 
 **References:** [Full transcript](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/inputs/dave-abrahams2.md) ・ [Synthesized knowledge](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/knowledge/dave-abrahams2.know.md)
 
-### 4.6 Application: Paper Preflight
+### 4.6 Agentic Synthesis: Combining Knowledge Across Interviews
+
+Individual knowledge files capture one expert's perspective. Greater value emerges when these files are combined agentically—processed together to identify principles that multiple experts independently corroborate.
+
+The synthesis process calculates two scores for each principle:
+
+- **Confidence**: How many independent experts articulated similar insights? A principle mentioned by three experts (e.g., "standardize existing practice, not invent") carries higher confidence than one from a single source.
+- **Relevance**: How directly applicable is this principle to evaluating standardization proposals? Principles about evaluation criteria rank higher than general observations about committee dynamics.
+
+From the five knowledge files produced in this experiment, agentic synthesis extracted **40 distinct principles**, sorted from highest to lowest confidence and relevance. The full output is available in [combined-principles.md](outputs/combined-principles.md).
+
+**Top 3 Principles (highest confidence and impact):**
+
+- **Standardize Existing Practice, Not Invent**: Standards bodies should only standardize designs proven through extensive real-world use; invention and experimentation must happen outside the standardization process.
+- **Require Positive Field Experience Before Standardization**: Proposals must demonstrate successful real-world usage with positive feedback from independent users before standardization; implementation alone is insufficient.
+- **Document Decision Rationale to Ensure Consistency**: Standards bodies must document the rationale for each decision and maintain explicit design principles; without this, similar questions get inconsistent answers and languages accrete contradictions.
+
+These three principles were independently articulated by multiple experts (Abrahams, Gregor, Hinnant, Parent), giving them the highest confidence scores in the synthesized output.
+
+### 4.7 Application: Paper Preflight
 
 What do we do with this distilled knowledge?
 
@@ -552,9 +571,9 @@ The framework was applied to ten papers:
 | [P1255R11](https://wg21.link/P1255R11) | — | 🔴 GATE | Failed because the "before" code works today—`views::maybe` makes code more elegant but doesn't enable anything previously impossible. "Making the easy easier" fails the standardization threshold. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P1255R11-views_maybe.md)) |
 | [P2075R5](https://wg21.link/P2075R5) | — | 🔴 GATE | Failed because it cited multiple vendor implementations (Intel MKL, cuRAND, rocRAND) as evidence *for* standardization, when this demonstrates the ecosystem already delivers the functionality. ([evaluation](https://github.com/cppalliance/wg21-capturing-knowledge/blob/master/outputs/P2075R5-philox_engine.md)) |
 
-> **⚠️ Not Automatic Acceptance**: We are not arguing that papers passing automated evaluation should be automatically accepted. The paper tester is a possible *first step* in a paper's journey—a way to surface signals that humans must then review and judge. The value is efficiency: incoming papers must be read, and for best results, read by experts whose attention is scarce. Automated application of distilled knowledge synthesizes useful signals at low cost, freeing expert attention for cases that genuinely require it. The tool augments human judgment; it does not replace it.
+> **⚠️ Not Automatic Acceptance or Rejection**: We are not arguing that papers processed through automated evaluation should be automatically accepted or rejected. The paper tester is a possible *first step* in a paper's journey—a way to surface signals that humans must then review and judge. The value is efficiency: incoming papers must be read, and for best results, read by experts whose attention is scarce. Automated application of distilled knowledge synthesizes useful signals at low cost, freeing expert attention for cases that genuinely require it. The tool augments human judgment; it does not replace it.
 
-### 4.7 Reproducibility and Iteration
+### 4.8 Reproducibility and Iteration
 
 While the capture rule and paper tester reflect subjective judgments that have not passed through rigorous human review, the outputs they produce are reproducible. Anyone can re-prompt the capture rule on the provided transcripts or re-prompt the paper tester on the original papers and obtain similar results.
 
